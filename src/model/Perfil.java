@@ -4,6 +4,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Stream;
 
+
+//Product em Builder
 public class Perfil {
 	
 	private List<Documento> documentos;

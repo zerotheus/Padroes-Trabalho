@@ -10,6 +10,7 @@ import model.EMail;
 import model.Perfil;
 import model.RG;
 
+//Builder Concreto
 public class UsuarioBuilder implements Builder{
 
     private List<Documento> documentos = new ArrayList<Documento>();

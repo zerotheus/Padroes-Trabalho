@@ -5,6 +5,7 @@ import model.CartaoCredito;
 import model.EMail;
 import model.RG;
 
+// interface Builder
 public interface Builder {
     
     public void adicionarCPF(CPF cpf);

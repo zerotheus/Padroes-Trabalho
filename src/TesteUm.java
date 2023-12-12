@@ -8,6 +8,9 @@ import model.Documento;
 import model.EMail;
 import model.Perfil;
 import model.RG;
+import proxy.ProxyClassificador;
+import service.Classificador;
+import service.ClassificadorPerfil;
 import visitor.FormatadorVisitor;
 import visitor.PontuarVisitor;
 import visitor.Visitor;
@@ -110,8 +113,9 @@ public class TesteUm {
         System.out.println(lula.toString() + " So com senha");
         System.out.println(lula.getUser() + " Usuario");
         System.out.println(lula.getPwd() + " Senha");
-
+        
         testarValidacoes(yasmin);
+        testeProxy(yasmin);
     }
 
     public void testarValidacoes(Perfil perfil) {
@@ -134,6 +138,13 @@ public class TesteUm {
             documento.accept(v);
             System.out.println("visitor pontos " + v.getFormatada());
         }
+
+    }
+
+    public void testeProxy(Perfil perfil){
+        Classificador proxy = new ProxyClassificador(perfil,"yasmin" , "yasmin");
+
+        System.out.println("nível: " + proxy.nivel());
 
     }
 

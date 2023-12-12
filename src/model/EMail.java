@@ -2,6 +2,8 @@ package model;
 
 import java.util.regex.Pattern;
 
+import visitor.Visitor;
+
 public class EMail implements Documento{
 	
 	public static final String REGEX = "^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$"; 
@@ -15,7 +17,6 @@ public class EMail implements Documento{
 
 	@Override
 	public String formatar() {
-		
 		return "E-MAIL\n" + this.conta;
 	}
 
@@ -37,6 +38,11 @@ public class EMail implements Documento{
 
 	public String getConta() {
 		return conta;
+	}
+
+	@Override
+	public void accept(Visitor visitor) {
+		visitor.visiteEmail(this);
 	}
 	
 	

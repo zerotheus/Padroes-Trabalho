@@ -48,8 +48,6 @@ public class CartaoCredito implements Documento{
 		return this.validar() ? 2 : 0;
 	}
 	
-	
-	
 	private boolean verificaLuhn() {
 		int sum = 0;
 		boolean shouldDouble = false;

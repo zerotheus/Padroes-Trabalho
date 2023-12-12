@@ -1,5 +1,7 @@
 package model;
 
+import visitor.Visitor;
+
 public class CPF implements Documento{
 	
 	public String nome;
@@ -30,51 +32,26 @@ public class CPF implements Documento{
 	public boolean validar() {
 	    this.numero.replace(".", "");
 	    this.numero.replace("-", "");
-		// TODO Auto-generated method stub
 		return this.numeroValido();
 	}
 
 
 	@Override
 	public Integer pontuar() {
-		// TODO Auto-generated method stub
 		return 3;
 	}
 	
 	
 	private boolean numeroValido() {
-	    int d1, d2;
-	    int digito1, digito2, resto;
-	    String nDigResult;
-
-	    d1 = d2 = 0;
-	    digito1 = digito2 = resto = 0;
-
-	    for (int iCount = this.numero.length() - 1, mult = 2; iCount >= 0; iCount--, mult++) {
-	      int digitoCPF = this.numero.charAt(iCount) - '0';
-	      d1 += (mult * digitoCPF);
-	      d2 += ((mult - 1) * digitoCPF);
-	    };
-
-	    resto = (d1 % 11);
-
-	    if (resto < 2)
-	      digito1 = 0;
-	    else
-	      digito1 = 11 - resto;
-
-	    d2 += 2 * digito1;
-	    resto = (d2 % 11);
-
-	    if (resto < 2)
-	      digito2 = 0;
-	    else
-	      digito2 = 11 - resto;
-
-	    String nDigVerific = this.numero.substring(this.numero.length() - 2, this.numero.length());
-	    nDigResult = String.valueOf(digito1) + String.valueOf(digito2);
-	    return nDigVerific.equals(nDigResult);
-	  
+	    if(this.numero.length() < 11){
+			System.out.println("Digitos faltantes");
+			return false;
+		}
+		if(!temSomenteNumeros()){
+			System.out.println("CPF tem somente numeros");
+			return false;
+		}
+		return validaCPF();
 	}
 
 
@@ -86,7 +63,56 @@ public class CPF implements Documento{
 	public String getNumero() {
 		return numero;
 	}
-	
-	
+
+
+	@Override
+	public void accept(Visitor visitor) {
+		visitor.visiteCpf(this);
+	}
+
+	private boolean temSomenteNumeros()  {
+        for (int i = 0; i < 9; i++) {
+            if(!ehUmDigito(numero.charAt(i))){
+				return false;
+			}
+        }
+		return true;
+    }
+
+	private boolean ehUmDigito(char character)  {
+        if (!Character.isDigit(character)) {
+            return false;
+        }
+		return true;
+    }
+
+	private boolean validaCPF(){
+		int digitoVerificadorUm = numero.charAt(9) - '0';
+		int digitoVerificadorDois = numero.charAt(10) - '0';
+		int primeiraSoma = 0,segundaSoma = 0;
+		int resultadoDigitoUm, resultadoDigitoDois;
+		for (int i = 0;i< 10;i++){
+			if(i<9){
+				primeiraSoma += (10 - i) * (numero.charAt(i) - '0');
+				segundaSoma += (11 - i) * (numero.charAt(i) - '0');
+				continue;
+			}
+			segundaSoma += (11 - i) * (numero.charAt(i) - '0');
+		}
+		int restoUm = primeiraSoma % 11; 
+		int restoDois = segundaSoma % 11;
+		if (restoUm < 2) {
+			resultadoDigitoUm = 0;
+		}else{
+			resultadoDigitoUm = 11 - restoUm;
+		}
+		if (restoDois < 2) {
+			resultadoDigitoDois = 0;
+		}else{
+			resultadoDigitoDois = 11 - restoDois;
+		}
+		return (resultadoDigitoUm == digitoVerificadorUm) && (resultadoDigitoDois == digitoVerificadorDois);
+	}
+
 
 }

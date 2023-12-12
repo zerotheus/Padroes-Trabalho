@@ -2,6 +2,7 @@ package model;
 
 import visitor.Visitor;
 
+//Concrete element em Visitor
 public class CPF implements Documento{
 	
 	public String nome;

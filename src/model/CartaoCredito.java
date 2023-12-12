@@ -5,12 +5,13 @@ import java.time.format.DateTimeFormatter;
 
 import visitor.Visitor;
 
-public class CartaoCredito implements Documento{
+//Concrete element em Visitor
+public class CartaoCredito implements Documento {
 	public String nome;
-	public String numero;	
+	public String numero;
 	public String cvc;
 	public LocalDate vencimento;
-	
+
 	public CartaoCredito(String nome, String numero, String cvc, LocalDate vencimento) {
 		super();
 		this.nome = nome;
@@ -18,11 +19,11 @@ public class CartaoCredito implements Documento{
 		this.cvc = cvc;
 		this.vencimento = vencimento;
 	}
-	
+
 	public CartaoCredito(String nome, String numero, String cvc, String vencimento) {
 		this(nome, numero, cvc, LocalDate.parse(vencimento, DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-	}	
-	
+	}
+
 	public String formatar() {
 		StringBuilder fmt = new StringBuilder();
 		fmt.append("CART�O DE CR�DITO\n");
@@ -34,7 +35,7 @@ public class CartaoCredito implements Documento{
 		fmt.append(this.cvc + "\n");
 		fmt.append(this.vencimento.format(DateTimeFormatter.ofPattern("MM/yy")));
 		return fmt.toString();
-		
+
 	}
 
 	@Override
@@ -47,19 +48,20 @@ public class CartaoCredito implements Documento{
 	public Integer pontuar() {
 		return this.validar() ? 2 : 0;
 	}
-	
+
 	private boolean verificaLuhn() {
 		int sum = 0;
 		boolean shouldDouble = false;
 		for (int iCont = this.numero.length() - 1; iCont >= 0; iCont--) {
 			int digit = this.numero.charAt(iCont) - '0';
-		    if (shouldDouble) {
-		      if ((digit *= 2) > 9) digit -= 9;
-		    }
-		    sum += digit;
-		    shouldDouble = !shouldDouble;
-		  }
-		return (sum % 10) == 0;		
+			if (shouldDouble) {
+				if ((digit *= 2) > 9)
+					digit -= 9;
+			}
+			sum += digit;
+			shouldDouble = !shouldDouble;
+		}
+		return (sum % 10) == 0;
 	}
 
 	public String getNome() {
@@ -82,12 +84,5 @@ public class CartaoCredito implements Documento{
 	public void accept(Visitor visitor) {
 		visitor.visiteCartao(this);
 	}
-	
-	
-	
-	
-	
-	
-	
-}
 
+}

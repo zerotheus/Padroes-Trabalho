@@ -129,10 +129,10 @@ public class TesteUm {
             System.out.println("visitor pontos " + v.getPontos());
         }
         for (Documento documento : documentos) {
-            System.out.println("doc:" + documento.toString() + " pontos " + documento.formatar());
+            System.out.println("doc:" + documento.toString() + " formato " + documento.formatar());
             FormatadorVisitor v = new FormatadorVisitor();
             documento.accept(v);
-            System.out.println("visitor pontos " + v.getFormatada());
+            System.out.println("visitor formatador " + v.getFormatada());
         }
 
     }

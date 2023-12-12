@@ -3,6 +3,8 @@ package model;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import visitor.Visitor;
+
 public class CartaoCredito implements Documento{
 	public String nome;
 	public String numero;	
@@ -59,7 +61,7 @@ public class CartaoCredito implements Documento{
 		    sum += digit;
 		    shouldDouble = !shouldDouble;
 		  }
-		  return (sum % 10) == 0;		
+		return (sum % 10) == 0;		
 	}
 
 	public String getNome() {
@@ -76,6 +78,11 @@ public class CartaoCredito implements Documento{
 
 	public LocalDate getVencimento() {
 		return vencimento;
+	}
+
+	@Override
+	public void accept(Visitor visitor) {
+		visitor.visiteCartao(this);
 	}
 	
 	

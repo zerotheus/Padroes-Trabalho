@@ -7,7 +7,7 @@ import model.CartaoCredito;
 import model.Documento;
 import model.Perfil;
 
-
+//Serviço em Proxy
 public class ClassificadorPerfil implements Classificador{
 	
 	private Perfil perfil;

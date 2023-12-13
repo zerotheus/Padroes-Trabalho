@@ -24,20 +24,6 @@ public class CartaoCredito implements Documento {
 		this(nome, numero, cvc, LocalDate.parse(vencimento, DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 	}
 
-	public String formatar() {
-		StringBuilder fmt = new StringBuilder();
-		fmt.append("CART�O DE CR�DITO\n");
-		fmt.append(this.nome + "\n");
-		fmt.append(this.numero.substring(0, 4) + " ");
-		fmt.append(this.numero.substring(4, 8) + " ");
-		fmt.append(this.numero.substring(8, 12) + " ");
-		fmt.append(this.numero.substring(12, 16) + "\n");
-		fmt.append(this.cvc + "\n");
-		fmt.append(this.vencimento.format(DateTimeFormatter.ofPattern("MM/yy")));
-		return fmt.toString();
-
-	}
-
 	public String getNome() {
 		return nome;
 	}

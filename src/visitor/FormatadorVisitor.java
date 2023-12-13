@@ -55,7 +55,7 @@ public class FormatadorVisitor implements Visitor {
         String nome = cartaoDeCredito.getNome(), numero = cartaoDeCredito.getNumero();
         String cvc = cartaoDeCredito.getCvc();
         LocalDate vencimento = cartaoDeCredito.getVencimento();
-        fmt.append("CART�O DE CR�DITO\n");
+        fmt.append("CARTÃO DE CRÉDITO\n");
         fmt.append(nome + "\n");
         fmt.append(numero.substring(0, 4) + " ");
         fmt.append(numero.substring(4, 8) + " ");

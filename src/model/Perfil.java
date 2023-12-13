@@ -43,7 +43,7 @@ public class Perfil {
 			VisitorValidador validador = new VisitorValidador();
 			doc.accept(formatador);
 			doc.accept(validador);
-			str.append(formatador.getFormatada() + (validador.validou() ? " [V�lido]" : "") + "\n");
+			str.append(formatador.getFormatada() + (validador.validou() ? " [Válido]" : "") + "\n");
 		}
 		return str.toString();
 	}

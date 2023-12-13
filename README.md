@@ -6,4 +6,4 @@
 
 <p>A segunda questão foi utilizado um visitor para resolver o problema de Dispersão de codigo nas subclasses de documento, assim movendo eles para o respectivo visitor, e mantem todos os codigos de validação, por exemplo no visitor Responsavel por validar</p>
 
-<p>A tercceira</p>
+<p>A Tercceira questão se trata de um problema estrutural, mais especificamente sobre o acesso a uma classe, por isso utilizamos um proxy, que so irá informar o nivel de confiança de um perfil, se usuario e senha forem informados corretamente</p>

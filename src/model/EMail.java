@@ -7,7 +7,7 @@ public class EMail implements Documento {
 
 	public static final String REGEX = "^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$";
 
-	public String conta;
+	private String conta;
 
 	public EMail(String conta) {
 		super();

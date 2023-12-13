@@ -5,8 +5,8 @@ import visitor.Visitor;
 //Concrete element em Visitor
 public class CPF implements Documento {
 
-	public String nome;
-	public String numero;
+	private String nome;
+	private String numero;
 
 	public CPF(String nome, String numero) {
 		super();

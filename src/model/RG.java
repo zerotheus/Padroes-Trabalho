@@ -8,10 +8,10 @@ import visitor.Visitor;
 //Concrete element em Visitor
 public class RG implements Documento {
 
-	public String nome;
-	public String numero;
-	public String expedidor;
-	public LocalDate validade;
+	private String nome;
+	private String numero;
+	private String expedidor;
+	private LocalDate validade;
 
 	public RG(String nome, String numero, String expedidor, LocalDate validade) {
 		super();

@@ -7,10 +7,10 @@ import visitor.Visitor;
 
 //Concrete element em Visitor
 public class CartaoCredito implements Documento {
-	public String nome;
-	public String numero;
-	public String cvc;
-	public LocalDate vencimento;
+	private String nome;
+	private String numero;
+	private String cvc;
+	private LocalDate vencimento;
 
 	public CartaoCredito(String nome, String numero, String cvc, LocalDate vencimento) {
 		super();

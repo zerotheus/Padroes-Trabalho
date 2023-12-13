@@ -13,7 +13,6 @@ import service.Classificador;
 import service.ClassificadorPerfil;
 import visitor.FormatadorVisitor;
 import visitor.PontuarVisitor;
-import visitor.Visitor;
 import visitor.VisitorValidador;
 
 public class TesteUm {
@@ -113,7 +112,7 @@ public class TesteUm {
         System.out.println(lula.toString() + " So com senha");
         System.out.println(lula.getUser() + " Usuario");
         System.out.println(lula.getPwd() + " Senha");
-        
+
         testarValidacoes(yasmin);
         testeProxy(yasmin);
     }
@@ -121,19 +120,16 @@ public class TesteUm {
     public void testarValidacoes(Perfil perfil) {
         List<Documento> documentos = perfil.documentos().toList();
         for (Documento documento : documentos) {
-            System.out.println("doc:" + documento.toString() + " valido " + documento.validar());
             VisitorValidador v = new VisitorValidador();
             documento.accept(v);
             System.out.println("visitor validou " + v.validou());
         }
         for (Documento documento : documentos) {
-            System.out.println("doc:" + documento.toString() + " pontos " + documento.pontuar());
             PontuarVisitor v = new PontuarVisitor();
             documento.accept(v);
             System.out.println("visitor pontos " + v.getPontos());
         }
         for (Documento documento : documentos) {
-            System.out.println("doc:" + documento.toString() + " formato " + documento.formatar());
             FormatadorVisitor v = new FormatadorVisitor();
             documento.accept(v);
             System.out.println("visitor formatador " + v.getFormatada());
@@ -141,8 +137,9 @@ public class TesteUm {
 
     }
 
-    public void testeProxy(Perfil perfil){
-        Classificador proxy = new ProxyClassificador(perfil,"yasmin" , "yasmin");
+    public void testeProxy(Perfil perfil) {
+        Classificador classificador = new ClassificadorPerfil(perfil);
+        Classificador proxy = new ProxyClassificador(classificador, "yasmin", "yasmin");
 
         System.out.println("nível: " + proxy.nivel());
 

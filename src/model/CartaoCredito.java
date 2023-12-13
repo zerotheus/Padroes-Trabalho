@@ -38,17 +38,6 @@ public class CartaoCredito implements Documento {
 
 	}
 
-	@Override
-	public boolean validar() {
-		this.numero.replace(" ", "");
-		return this.verificaLuhn() && this.vencimento.isAfter(LocalDate.now());
-	}
-
-	@Override
-	public Integer pontuar() {
-		return this.validar() ? 2 : 0;
-	}
-
 	private boolean verificaLuhn() {
 		int sum = 0;
 		boolean shouldDouble = false;

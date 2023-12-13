@@ -1,7 +1,5 @@
 package model;
 
-import java.util.regex.Pattern;
-
 import visitor.Visitor;
 
 //Concrete element em Visitor

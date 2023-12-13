@@ -38,21 +38,6 @@ public class CartaoCredito implements Documento {
 
 	}
 
-	private boolean verificaLuhn() {
-		int sum = 0;
-		boolean shouldDouble = false;
-		for (int iCont = this.numero.length() - 1; iCont >= 0; iCont--) {
-			int digit = this.numero.charAt(iCont) - '0';
-			if (shouldDouble) {
-				if ((digit *= 2) > 9)
-					digit -= 9;
-			}
-			sum += digit;
-			shouldDouble = !shouldDouble;
-		}
-		return (sum % 10) == 0;
-	}
-
 	public String getNome() {
 		return nome;
 	}
